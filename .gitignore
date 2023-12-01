@@ -1,0 +1,12 @@
+*~
+\#*#
+*.o
+*.aux
+*.dvi
+*.log
+*.synctex.gz
+\.nfs0000*
+\..*
+
+.DS_Store
+.vscode/

@@ -4,7 +4,8 @@
 \usepackage{bm}
 \usepackage{enumerate}
 \usepackage{amsmath,amssymb}
-\usepackage{mathtools}
+% \usepackage{mathtools}
+\usepackage[legacycolonsymbols]{mathtools}
 \usepackage{ascmac}
 \usepackage{tcolorbox}
 \tcbuselibrary{theorems,breakable}
@@ -178,7 +179,41 @@ $E$は$w_i$について下に凸な二次関数だから$\frac{\partial E}{\part
 \end{equation*}
 が示される。
 
-\supplement
-離散変数で考えたけど連続でも同じ
+\newpage
+\begin{itembox}[l]{問題 1.7}
+次の1変数ガウス分布に関する規格化条件を証明する
+\begin{equation*}
+    \int_{-\infty}^{\infty} \mathcal{N}(x|\mu, \sigma^2) dx = 1
+\end{equation*}
+\end{itembox}
+\answer
+\begin{equation*}
+    \int_{-\infty}^{\infty} \mathcal{N}(x|\mu, \sigma^2) dx= I
+\end{equation*}
+とおき、$I^2$を考える。
 
+\begin{align*}
+    I^2 &= \int_{-\infty}^{\infty} \mathcal{N}(x|\mu, \sigma^2) dx \int_{-\infty}^{\infty} \mathcal{N}(y|\mu, \sigma^2) dy\\
+    &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \mathcal{N}(x|\mu, \sigma^2) \mathcal{N}(y|\mu, \sigma^2) dxdy\\
+    &= \frac{1}{2\pi\sigma^2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} 
+    \exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right) \exp \left( -\frac{1}{2\sigma^2}(y-\mu)^2 \right) dxdy \\
+    &= \frac{1}{2\pi\sigma^2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} 
+    \exp \left( -\frac{1}{2\sigma^2} \left[ (x-\mu)^2 + (y-\mu)^2 \right] \right) dxdy \\
+    &= \frac{1}{2\pi\sigma^2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} 
+    \exp \left( -\frac{1}{2\sigma^2} (x^2 + y^2) \right) dxdy
+\end{align*}
+
+最後の行は改めて$x-\mu\rightarrow x, y-\mu\rightarrow y$とおいた。\\
+ここで、極座標変換を施すと、
+\begin{align*}
+    I^2 &= \frac{1}{2\pi\sigma^2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}
+    \exp \left( -\frac{1}{2\sigma^2} (x^2 + y^2) \right) dxdy \\
+    &= \frac{1}{2\pi\sigma^2} \int_{0}^{\infty} \int_{0}^{2\pi}
+    \exp \left( -\frac{1}{2\sigma^2} r^2 \right) r drd\theta \\
+    &= \frac{1}{\sigma^2} \int_{0}^{\infty} \exp \left( -\frac{1}{2\sigma^2} r^2 \right) r dr \\
+    &= - \int_{0}^{\infty} \exp \left( -\frac{1}{2\sigma^2} r^2 \right) \left( -\frac{1}{2\sigma^2} r^2 \right)' dr \\
+    &= - \left[ \exp \left( -\frac{1}{2\sigma^2} r^2 \right) \right]_0^{\infty} \\
+    &= 1
+\end{align*}
+よって、$I \ge 0$より$I=1$が示された
 \end{document}

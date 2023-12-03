@@ -147,10 +147,24 @@ $E$は$w_i$について下に凸な二次関数だから$\frac{\partial E}{\part
 
 \newpage
 \begin{itembox}[l]{問題 1.5}
-    hoge
+    次の式を示す。
+    \begin{equation*}
+        \var [f] = \E [{f(x)}^2] - {\E[f(x)]}^2
+    \end{equation*}
 \end{itembox}
 
 \answer
+\begin{align*}
+    \var[f] &= \E\left[(f(x) - \E[f(x)])^2\right] \\
+    &= \int p(x) (f(x) - \E[f(x)])^2 dx \\
+    &= \int p(x)f(x)^2 dx - 2\E[f(x)]\int p(x)f(x)dx + \E[f(x)]^2 \int p(x) dx\\
+    &= \E[f(x)^2] - 2\E[f(x)]\E[f(x)] + \E[f(x)]^2 \\
+    &= \E[f(x)^2] - + \E[f(x)]^2
+\end{align*}
+より示せた。
+
+\supplement
+3行目から4行目では$E[f(x)]$の定義と$p(x)$が規格化されていることを用いた。
 
 
 \newpage
@@ -202,7 +216,6 @@ $E$は$w_i$について下に凸な二次関数だから$\frac{\partial E}{\part
     &= \frac{1}{2\pi\sigma^2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} 
     \exp \left( -\frac{1}{2\sigma^2} (x^2 + y^2) \right) dxdy
 \end{align*}
-
 最後の行は改めて$x-\mu\rightarrow x, y-\mu\rightarrow y$とおいた。\\
 ここで、極座標変換を施すと、
 \begin{align*}
@@ -216,4 +229,90 @@ $E$は$w_i$について下に凸な二次関数だから$\frac{\partial E}{\part
     &= 1
 \end{align*}
 よって、$I \ge 0$より$I=1$が示された
+
+\newpage
+\begin{itembox}[l]{問題 1.8}
+    1変数ガウス分布の平均値が$\mu$で与えられることを示し、次に規格化条件
+    \begin{equation*}
+        \int_{-\infty}^{\infty} \mathcal{N}(x|\mu, \sigma^2) dx= 1
+    \end{equation*}
+    の両辺を$\sigma^2$に関して微分することで、ガウス分布の2次のモーメントを求める。
+    最後に分散を求める。
+\end{itembox}
+まず、$\E[x]$を求める。
+\begin{align*}
+    \E[x] &= \int_{-\infty}^{\infty} \mathcal{N}(x|\mu, \sigma^2) x dx \\
+    &= \frac{1}{(2\pi \sigma^2)^{1/2}} \int_{-\infty}^{\infty}\exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right) x dx
+\end{align*}
+ここで、$x-\mu \rightarrow x$と置き換えると、
+\begin{align*}
+    \E[x] &= \frac{1}{(2\pi \sigma^2)^{1/2}} \int_{-\infty}^{\infty}\exp 
+    \left( -\frac{1}{2\sigma^2}x^2 \right) (x+\mu) dx \\
+    &= \frac{1}{(2\pi \sigma^2)^{1/2}} \int_{-\infty}^{\infty}\exp 
+    \left( -\frac{1}{2\sigma^2}x^2 \right) x dx
+    + \mu \frac{1}{(2\pi \sigma^2)^{1/2}} \int_{-\infty}^{\infty}\exp 
+    \left( -\frac{1}{2\sigma^2}x^2 \right) dx \\
+    &= C \int_{-\infty}^{\infty}\exp 
+    \left( -\frac{1}{2\sigma^2}x^2 \right) \left( -\frac{1}{2\sigma^2}x^2 \right)' dx
+    + \mu \int_{-\infty}^{\infty} \mathcal{N}(x|\mu, \sigma^2) dx \qquad (C:\mathrm{Const.})\\
+    &= 0 + \mu \cdot 1 \\
+    &= \mu
+\end{align*}
+$\E[x^2]$については、
+\begin{align*}
+    \int_{-\infty}^{\infty} \mathcal{N}(x|\mu, \sigma^2) dx
+    &= \frac{1}{(2\pi \sigma^2)^{1/2}} \int_{-\infty}^{\infty}\exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right) dx \\
+    &= 1
+\end{align*}
+の両辺を$\sigma^2$について微分すると、
+
+\begin{align*}
+    -\frac{1}{2}\frac{1}{(2\pi)^{1/2}} \frac{1}{\sigma^3} 
+    \int_{-\infty}^{\infty}\exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right) dx
+    + \frac{1}{(2\pi \sigma^2)^{1/2}} \int_{-\infty}^{\infty}\exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right)
+    \left(\frac{1}{2\sigma^4}(x-\mu)^2 \right) dx \\
+    = -\frac{1}{2\sigma^2}\frac{1}{(2\pi \sigma^2)^{1/2}}
+    \int_{-\infty}^{\infty}\exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right) dx
+    + \frac{1}{2\sigma^4} \frac{1}{(2\pi \sigma^2)^{1/2}} \int_{-\infty}^{\infty}\exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right)
+    (x-\mu)^2 dx \\
+    = -\frac{1}{2\sigma^2} + \frac{1}{2\sigma^4}(\E[x^2] - 2\mu\E[x] + \mu^2) \\
+    = -\frac{1}{2\sigma^2} + \frac{1}{2\sigma^4}(\E[x^2] - \mu^2) \\
+    = 0
+\end{align*}
+よって、
+\begin{equation*}
+    \E[x^2] = \mu^2 + \sigma^2
+\end{equation*}
+を得る。
+以上より、分散は
+\begin{align*}
+    \var[x] &= \E[x^2] - \E[x]^2 \\
+    &= \mu^2
+\end{align*}
+と求められる。
+
+\newpage
+\begin{itembox}[l]{問題 1.9}
+    1変数ガウス分布(\ref{normal})のモードおよび多変量ガウス分布(\ref{multi_normal})のモードが$\mu$や$\bm{\mu}$で与えられることを示す。
+    \begin{equation}\label{normal}
+        \mathcal{N}(x|\mu, \sigma^2) = 
+        \frac{1}{(2\pi \sigma^2)^{1/2}}\exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right)
+    \end{equation}
+    \begin{equation}\label{multi_normal}
+        \mathcal{N}(\bm{x}|\bm{\mu}, \bm{\Sigma}) = \frac{1}{(2\pi)^{D/2}} \frac{1}{|\bm{\Sigma}|^{1/2}}
+        \exp \left( -\frac{1}{2} (\bm{x} - \bm{\mu}) ^ {\mathrm{T}}
+        \bm{\Sigma}^{-1} (\bm{x} - \bm{\mu}) \right)
+    \end{equation}
+\end{itembox}
+
+\newpage
+\begin{itembox}[l]{問題 1.10}
+    1変数ガウス分布のモードおよび多変量ガウス分布のモードが$\mu$や$\bm{\mu}$で与えられることを示す。
+\end{itembox}
+
+\newpage
+\begin{itembox}[l]{問題 1.11}
+    1変数ガウス分布のモードおよび多変量ガウス分布のモードが$\mu$や$\bm{\mu}$で与えられることを示す。
+\end{itembox}
+
 \end{document}

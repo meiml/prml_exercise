@@ -337,7 +337,36 @@ $\E[x^2]$については、
         \E[x+z] = \E[x] + \E[z] \\
         \var[x+z] = \var[x] + \var[z]
     \end{gather*}
-
+    を満たすことを示す
 \end{itembox}
-
+まず期待値から
+\begin{align*}
+    \E[x+z] &= \iint p(x,z) (x+z) dx dz \\
+    &= \iint p(x,z)x dx dz + \iint p(x,z)z dx dz \\
+    &= \int x \left( \int p(x,z) dz \right) dx + \int z \left( \int p(x,z) dx \right) dz \\
+    &= \int p_z(x) dx + \int p_x(z) dz \\
+    &= \E[x] + \E[z]
+\end{align*}
+独立を仮定しなくても周辺分布を考えればよいので線形性は常に成り立つ \\
+次に分散の関係式を示す
+\begin{align*}
+    \var[x+z] &= \E[(x+z)^2] - \E[x+z]^2 \\
+    &= \E[x^2] + 2\E[xz] + \E[z^2] - (\E[x] + \E[z])^2 \\
+    &= \E[x^2] - \E[x]^2 + \E[z^2] - \E[z]^2 + 2(\E[xz] - \E[x]\E[z]) \\
+    &= \var[x] + \var[z] + 2(\E[xz] - \E[x]\E[z]) \\
+\end{align*}
+2行目で線形性を用いた\\
+そして、
+\begin{align*}
+    \E[xz] &= \iint p(x,z) xz dx dz \\
+    &= \iint p(x)p(z) xz dx dy \\
+    &= \int xp(x) dx \int zp(z) dz \\
+    &= \E[x]\E[z]
+\end{align*}
+3行目で独立であることから$p(x,y)=p(x)p(y)$を用いた\\
+よって、
+\begin{equation*}
+    \var[x+z] = \var[x] + \var[z]
+\end{equation*}
+が示せた。
 \end{document}

@@ -1,0 +1,100 @@
+\documentclass[a4j,dvipdfmx]{jsarticle}
+
+\usepackage[top=20truemm,bottom=20truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage{amsmath,amssymb}
+% \usepackage{mathtools}
+\usepackage[legacycolonsymbols]{mathtools}
+\usepackage{ascmac}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,breakable}
+\usepackage{tikz}
+\usetikzlibrary{positioning,intersections,calc,arrows.meta,math}
+
+
+\newcommand{\answer}
+{\noindent
+\begin{tikzpicture}[scale=0.2, baseline=2.8pt]
+\draw (3.3,1) node{\large\textgt{解 答}};
+\draw[thick, rounded corners=3pt] (0,0)--(6.5,0)--(6.5,2.2)--(0,2.2)--cycle;
+\end{tikzpicture}\;\\}
+
+\newcommand{\supplement}
+{\noindent
+\begin{tikzpicture}[scale=0.2, baseline=2.8pt]
+\fill[gray] (0,0)--(6.5,0)--(6.5,2.2)--(0,2.2);
+\draw (3.3,1) node[white]{\large\textgt{補 足}};
+\draw[gray] (0,0)--(6.5,0)--(6.5,2.2)--(0,2.2)--cycle;
+\end{tikzpicture}\;\\}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\cov}{\mathrm{cov}}
+
+\title{PRML 演習問題 1.11~1.20}
+\author{mei}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{itembox}[l]{問題 1.11}
+    1次元正規分布の$\mu$と$\sigma^2$の最尤解を求める
+\end{itembox}
+\answer
+正規分布から独立に生成された
+スカラー変数のデータセット$\mathbf{x}=(x_1,x_2,\cdots,x_N)^{\mathrm{T}}$があったとする。\\
+この時対数尤度は
+\begin{equation*}
+    \ln p(\mathbf{x}|\mu,\sigma^2) = -\frac{1}{2\sigma^2}
+    \sum_{n=1}^{N}(x_n-\mu)^2 - \frac{N}{2}\ln \sigma^2
+    - \frac{N}{2} \ln(2\pi)
+\end{equation*}
+\begin{align*}
+    \frac{\partial}{\partial \mu} \ln p(\mathbf{x}|\mu,\sigma^2) &=
+    -\frac{1}{\sigma^2} \sum_{n=1}^{N}(x_n-\mu) \\
+    &= 0
+\end{align*}
+よって、
+\begin{gather*}
+    \sum_{n=1}^{N} (x_n-\mu) = 0 \\
+    \mu = \frac{1}{N}\sum_{n=1}^{N} x_n
+\end{gather*}
+となり、$\mu$の最尤解は標本平均と一致する\\
+一方、分散については
+\begin{align*}
+    \frac{\partial}{\partial \sigma^2} \ln p(\mathbf{x}|\mu,\sigma^2) &=
+    \frac{1}{2\sigma^4}
+    \sum_{n=1}^{N}(x_n-\mu)^2 - \frac{N}{2} \frac{1}{\sigma^2} \\
+    &= 0
+\end{align*}
+よって、
+\begin{gather*}
+    \sigma^2 = \frac{1}{N} \sum_{n=1}^{N} (x_n - \mu)^2
+\end{gather*}
+$\mu$の最尤解を$\mu_\mathrm{ML}$と書くと
+\begin{equation*}
+    \sigma^2 = \frac{1}{N} \sum_{n=1}^{N} (x_n - \mu_{\mathrm{ML}})^2
+\end{equation*}
+となり、$\mu_{\mathrm{ML}}$は標本平均に一致したから、
+$\sigma^2$は標本平均に対する標本分散になる
+
+\newpage
+\begin{itembox}[l]{問題 1.12}
+    \begin{equation*}
+        \E[x_n, x_m] = \mu^2 + I_{nm}\sigma^2 
+    \end{equation*}
+    を示す。ただし$x_n, x_m$は平均$\mu$、分散$\sigma^2$の正規分布から生成されたデータ点であり、$I_{nm}=\delta_{nm}$である
+\end{itembox}
+\answer
+$(\mathrm{i}) \quad n=m$のとき \\ \\
+左辺は二次のモーメントであり、
+\begin{equation*}
+    \E[x_n^2]=\mu^2+\sigma^2
+\end{equation*}
+となるので成立 \\ \\
+$(\mathrm{ii}) \quad n=m$のとき
+
+
+\end{document}

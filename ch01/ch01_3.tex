@@ -1,0 +1,47 @@
+\documentclass[a4j,dvipdfmx]{jsarticle}
+
+\usepackage[top=20truemm,bottom=20truemm,left=20truemm,right=20truemm]{geometry}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage{amsmath,amssymb}
+% \usepackage{mathtools}
+\usepackage[legacycolonsymbols]{mathtools}
+\usepackage{ascmac}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,breakable}
+\usepackage{tikz}
+\usetikzlibrary{positioning,intersections,calc,arrows.meta,math}
+
+
+\newcommand{\answer}
+{\noindent
+\begin{tikzpicture}[scale=0.2, baseline=2.8pt]
+\draw (3.3,1) node{\large\textgt{解 答}};
+\draw[thick, rounded corners=3pt] (0,0)--(6.5,0)--(6.5,2.2)--(0,2.2)--cycle;
+\end{tikzpicture}\;\\}
+
+\newcommand{\supplement}
+{\noindent
+\begin{tikzpicture}[scale=0.2, baseline=2.8pt]
+\fill[gray] (0,0)--(6.5,0)--(6.5,2.2)--(0,2.2);
+\draw (3.3,1) node[white]{\large\textgt{補 足}};
+\draw[gray] (0,0)--(6.5,0)--(6.5,2.2)--(0,2.2)--cycle;
+\end{tikzpicture}\;\\}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\var}{\mathrm{var}}
+\newcommand{\cov}{\mathrm{cov}}
+
+\title{PRML 1章 演習問題}
+\author{mei}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{itembox}[l]{問題}
+    hoge
+\end{itembox}
+
+\answer
+\end{document}

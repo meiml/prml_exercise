@@ -140,8 +140,11 @@ $E$は$w_i$について下に凸な二次関数だから$\frac{\partial E}{\part
 
 \newpage
 \begin{itembox}[l]{問題 1.4}
-    hoge
+    連続変数$x$上で定義された確立密度$p_x(x)$を考える。$x=g(y)$による変換を施した場合$y$についての密度を最大にする位置
+    $\widehat{y}$と$x$についての密度を最大にする位置$\widehat{x}$との間に一般には$\widehat{x}=g(\widehat{y})$の関係が成り立たないことを示す。また、線形変換では
+    この式が成り立つことも示す。
 \end{itembox}
+
 
 \answer
 
@@ -159,7 +162,7 @@ $E$は$w_i$について下に凸な二次関数だから$\frac{\partial E}{\part
     &= \int p(x) (f(x) - \E[f(x)])^2 dx \\
     &= \int p(x)f(x)^2 dx - 2\E[f(x)]\int p(x)f(x)dx + \E[f(x)]^2 \int p(x) dx\\
     &= \E[f(x)^2] - 2\E[f(x)]\E[f(x)] + \E[f(x)]^2 \\
-    &= \E[f(x)^2] - + \E[f(x)]^2
+    &= \E[f(x)^2] - \E[f(x)]^2
 \end{align*}
 より示せた。
 
@@ -304,6 +307,28 @@ $\E[x^2]$については、
         \bm{\Sigma}^{-1} (\bm{x} - \bm{\mu}) \right)
     \end{equation}
 \end{itembox}
+\answer
+まず1変数について考える。上に凸なので微分が0になる点で確率分布が最大値を取る
+\begin{align*}
+    \frac{d}{dx} \mathcal{N}(x|\mu, \sigma^2) &= 
+    \frac{d}{dx} \left[ \frac{1}{(2\pi \sigma^2)^{1/2}} \exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right) \right] \\
+    &= \frac{1}{(2\pi \sigma^2)^{1/2}} \frac{-1}{\sigma^2} (x-\mu) \exp \left( -\frac{1}{2\sigma^2}(x-\mu)^2 \right) \\
+    &= 0
+\end{align*}
+よって$x=\mu$で$\mathcal{N}$が最大になる、つまりモードが$\mu$で与えられる。\\
+次に多変量の場合を考える。指数部分の二次形式を考えると、
+\begin{align*}
+    -\frac{1}{2} (\bm{x} - \bm{\mu}) ^ {\mathrm{T}}
+        \bm{\Sigma}^{-1} (\bm{x} - \bm{\mu}) &= 
+        - \frac{1}{2} \sum_{j=1}^{D} \sum_{i=1}^{D} (x_i - \mu_i)^2\cov[x_i, x_j] 
+\end{align*}
+となるため、勾配が0になるとき
+\begin{align*}
+    \frac{\partial}{\partial x_k} \mathcal{N}(\bm{x}|\bm{\mu}, \bm{\Sigma}) &= 
+    \frac{-1}{2} \sum_{i=1}^{D} 2(x_k-\mu_k)\cov[x_i,x_k] \\
+    &=-(x_k-\mu_k) \sum_{i=1}^{D} \cov[x_i, x_k]
+\end{align*}
+よって、$x_k=\mu_k$の時$\mathcal{N}$が最大になる、つまりモードが$\bm{\mu}$で与えられる
 
 \newpage
 \begin{itembox}[l]{問題 1.10}

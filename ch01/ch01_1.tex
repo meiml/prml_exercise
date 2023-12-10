@@ -145,7 +145,35 @@ $E$は$w_i$について下に凸な二次関数だから$\frac{\partial E}{\part
     この式が成り立つことも示す。
 \end{itembox}
 \answer
-
+$P_y(y)$の微分を考える．
+\begin{align*}
+    P_y'(y) = P_x'(g(y))|g'(y)| +
+     P_x(g(y)) \frac{d}{dy} |g'(y)|
+\end{align*}
+である．\\
+一旦問題文を無視して，$\widehat{x}=g(\widehat{y})$によって定まる$\widehat{y}$を用いると
+$y=\widehat{y}$における微分は，
+\begin{align*}
+    P_y'(\widehat{y}) &= P_x'(g(\widehat{y}))|g'(\widehat{y})| +
+    P_x(g(\widehat{y})) \cdot \left. \frac{d}{dy} |g'(y)| \right|_{y=\widehat{y}} \\
+    &= P_x'(\widehat{x})|g'(\widehat{y})| +
+    P_x(\widehat{x}) \cdot \left. \frac{d}{dy} |g'(y)| \right|_{y=\widehat{y}} \\
+    &= P_x(\widehat{x}) \cdot \left. \frac{d}{dy} |g'(y)| \right|_{y=\widehat{y}} \\
+\end{align*}
+となり，一般には微分が0にはならないので$p_y(y)$は$y=\widehat{y}$で最大値を取るとは言えない．\\
+線形変換を仮定すると，
+\begin{equation*}
+    x = ay + b \qquad (a, b \in \mathbb{R})
+\end{equation*}
+とかけて，
+\begin{equation*}
+    | g'(y) | = \pm a
+\end{equation*}
+より，
+\begin{equation*}
+    P_y'(\widehat{y}) = 0
+\end{equation*}
+が成り立つことが言える．
 
 
 \newpage
@@ -325,8 +353,8 @@ $\E[x^2]$については、
 となるため、勾配が0になるとき
 \begin{align*}
     \frac{\partial}{\partial x_k} \mathcal{N}(\bm{x}|\bm{\mu}, \bm{\Sigma}) &= 
-    \frac{-1}{2} \sum_{i=1}^{D} 2(x_k-\mu_k)\cov[x_i,x_k] \\
-    &=-(x_k-\mu_k) \sum_{i=1}^{D} \cov[x_i, x_k]
+    \frac{-1}{2} \sum_{j=1}^{D} 2(x_k-\mu_k)\cov[x_k,x_j] \\
+    &=-(x_k-\mu_k) \sum_{j=1}^{D} \cov[x_k, x_j]
 \end{align*}
 よって、$x_k=\mu_k$の時$\mathcal{N}$が最大になる、つまりモードが$\bm{\mu}$で与えられる
 
